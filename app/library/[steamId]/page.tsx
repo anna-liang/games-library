@@ -1,8 +1,8 @@
 import axios from 'axios';
-import Image from 'next/image';
 import { Game } from '../../lib/types';
 import Link from 'next/link';
 import { tomorrow } from '../../lib/fonts';
+import BoxArt from '../../components/boxArt';
 
 export default async function Page(props: {
   params: Promise<{ steamId: string }>;
@@ -11,7 +11,6 @@ export default async function Page(props: {
   const steamId = params.steamId;
   let libraryData;
 
-  // TODO: change so that it's in a server component
   try {
     const response = await axios.get(
       `http://localhost:3000/api/getOwnedGames`,
@@ -26,10 +25,6 @@ export default async function Page(props: {
   } catch (error) {
     console.error(error);
   }
-
-  // const handleImageError = () => {
-  //   console.log('cannot find this image');
-  // };
 
   return (
     <div className="p-8">
@@ -46,15 +41,7 @@ export default async function Page(props: {
               href={`/library/${steamId}/game/${game.id}`}
               className="grid justify-items-center"
             >
-              <Image
-                src={game.boxArt}
-                alt={`${game.name}'s icon`}
-                width={600}
-                height={900}
-                // onError={handleImageError} // can't be passed to client component props
-              />
-              {/* <p>{game.name}</p>
-                <p>{(game.playtime / 60).toFixed(1)}</p> */}
+              <BoxArt game={game} key={game.id} />
             </Link>
           </div>
         ))}

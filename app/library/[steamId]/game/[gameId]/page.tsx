@@ -2,6 +2,7 @@ import axios from 'axios';
 import Image from 'next/image';
 import { Achievement, Game } from '../../../../lib/types';
 import { tomorrow } from '../../../../lib/fonts';
+import BoxArt from '../../../../components/boxArt';
 
 const GamePage = async (props: {
   params: Promise<{ steamId: string; gameId: string }>;
@@ -44,13 +45,7 @@ const GamePage = async (props: {
         <div className={`p-24`}>
           <div className="grid grid-cols-3 gap-8">
             <div className="grid justify-items-center">
-              <Image
-                src={gameData.boxArt}
-                alt={`${gameData.name}'s icon`}
-                width={300}
-                height={450}
-                className="shadow-lg shadow-black/70 mt-2"
-              />
+              <BoxArt game={gameData} style="shadow-lg shadow-black/70" />
             </div>
             <div className="col-span-2">
               <p className={`${tomorrow.className} text-6xl text-gray-300`}>
@@ -59,7 +54,7 @@ const GamePage = async (props: {
               <p
                 className={`${tomorrow.className} text-gray-400 mb-4 pl-[3px]`}
               >
-                {gameData.developers.join(',')}
+                {gameData.developers.join(', ')}
               </p>
               <hr className="mb-1 border-gray-400" />
               <p
@@ -70,9 +65,6 @@ const GamePage = async (props: {
               <div className="grid grid-cols-10 gap-4 pl-[3px]">
                 {gameData.achievements.map((achievement: Achievement) => (
                   <div key={achievement.id}>
-                    {/* <span className="w-auto bg-gray-900 text-gray-300 z-1 relative hidden hover:block rounded-md p-[5px] text-center text-sm">
-                  {achievement.name}
-                </span> */}
                     <Image
                       src={achievement.icon}
                       alt={achievement.id}
