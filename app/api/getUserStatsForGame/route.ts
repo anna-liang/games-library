@@ -22,6 +22,9 @@ export async function GET(request: NextRequest) {
     id: parseInt(gameId),
     boxArt: '',
     name: '',
+    description: '',
+    developers: [],
+    backgroundImage: '',
     playtime: 0,
     achievements: [],
   };
@@ -48,13 +51,24 @@ export async function GET(request: NextRequest) {
   } catch (error) {
     console.error(error);
   }
+  try {
+    const response = await axios.get(
+      `https://store.steampowered.com/api/appdetails?appids=${gameId}`,
+    );
+    responseFormatted.description =
+      response.data[`${gameId}`].data.short_description;
+    responseFormatted.backgroundImage =
+      response.data[`${gameId}`].data.background;
+    responseFormatted.developers = response.data[`${gameId}`].data.developers;
+  } catch (error) {
+    console.error(error);
+  }
   // Fetch use stats for requested game
   try {
     const response: GetUserStatsForGameResponse = await axios.get(
       `http://api.steampowered.com/ISteamUserStats/GetUserStatsForGame/v2/?key=${process.env.STEAM_API_KEY}&steamid=${steamId}&appid=${gameId}`,
     );
     // Updated the achieved achievements
-    // console.log(response.data.playerstats.achievements);
     response.data.playerstats.achievements?.forEach((userAchievement) => {
       const index = responseFormatted.achievements?.findIndex(
         (achievement) => achievement.id === userAchievement.name,
@@ -63,8 +77,6 @@ export async function GET(request: NextRequest) {
         responseFormatted.achievements[index].achieved = true;
       }
     });
-
-    console.log(responseFormatted.achievements);
   } catch (error) {
     console.error(error);
   }

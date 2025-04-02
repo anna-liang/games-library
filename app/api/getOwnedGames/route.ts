@@ -20,6 +20,9 @@ export async function GET(request: NextRequest) {
           id: game.appid,
           boxArt: `https://steamcdn-a.akamaihd.net/steam/apps/${game.appid}/library_600x900.jpg`,
           name: game.name,
+          description: '',
+          developers: [],
+          backgroundImage: '',
           playtime: game.playtime_forever,
           achievements: [],
         };

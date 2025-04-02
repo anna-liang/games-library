@@ -79,6 +79,9 @@ export interface Game {
   id: number;
   boxArt: string;
   name: string;
+  description: string;
+  developers: string[];
+  backgroundImage: string;
   playtime: number;
   achievements: Achievement[];
 }
