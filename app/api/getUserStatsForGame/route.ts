@@ -34,7 +34,6 @@ export async function GET(request: NextRequest) {
       `http://api.steampowered.com/ISteamUserStats/GetSchemaForGame/v2/?key=${process.env.STEAM_API_KEY}&appid=${gameId}`,
     );
     responseFormatted.boxArt = `https://steamcdn-a.akamaihd.net/steam/apps/${gameId}/library_600x900.jpg`;
-    responseFormatted.name = response.data.game.gameName;
     if (response.data.game.availableGameStats.achievements) {
       responseFormatted.achievements =
         response.data.game.availableGameStats.achievements.map(
@@ -55,6 +54,7 @@ export async function GET(request: NextRequest) {
     const response = await axios.get(
       `https://store.steampowered.com/api/appdetails?appids=${gameId}`,
     );
+    responseFormatted.name = response.data[`${gameId}`].data.name;
     responseFormatted.description =
       response.data[`${gameId}`].data.short_description;
     responseFormatted.backgroundImage =
