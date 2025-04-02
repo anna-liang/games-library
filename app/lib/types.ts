@@ -54,9 +54,9 @@ interface SchemaAchievement {
 export interface GetSchemaForGameResponse {
   data: {
     game: {
-      gameName: string;
-      gameVersion: string;
-      availableGameStats: {
+      gameName?: string;
+      gameVersion?: string;
+      availableGameStats?: {
         stats: SchemaStat[];
         achievements: SchemaAchievement[];
       };

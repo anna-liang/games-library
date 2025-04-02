@@ -34,9 +34,9 @@ export async function GET(request: NextRequest) {
       `http://api.steampowered.com/ISteamUserStats/GetSchemaForGame/v2/?key=${process.env.STEAM_API_KEY}&appid=${gameId}`,
     );
     responseFormatted.boxArt = `https://steamcdn-a.akamaihd.net/steam/apps/${gameId}/library_600x900.jpg`;
-    if (response.data.game.availableGameStats.achievements) {
+    if (response.data.game?.availableGameStats) {
       responseFormatted.achievements =
-        response.data.game.availableGameStats.achievements.map(
+        response.data.game?.availableGameStats?.achievements.map(
           (achievement) => {
             return {
               id: achievement.name,
