@@ -27,6 +27,7 @@ export async function GET(request: NextRequest) {
     backgroundImage: '',
     playtime: 0,
     achievements: [],
+    perfection: false,
   };
   // Fetch schema for requested game
   try {
@@ -77,6 +78,10 @@ export async function GET(request: NextRequest) {
         responseFormatted.achievements[index].achieved = true;
       }
     });
+    // Achieved achievements equals total achievements
+    responseFormatted.perfection =
+      responseFormatted.achievements.length ===
+      response.data.playerstats.achievements.length;
   } catch (error) {
     console.error(error);
   }

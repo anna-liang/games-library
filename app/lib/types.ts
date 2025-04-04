@@ -84,4 +84,5 @@ export interface Game {
   backgroundImage: string;
   playtime: number;
   achievements: Achievement[];
+  perfection: boolean;
 }
