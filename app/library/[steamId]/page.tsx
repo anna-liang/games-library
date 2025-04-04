@@ -35,7 +35,13 @@ export default async function Page(props: {
       </h1>
       <div className="flex grid grid-cols-3 sm:grid-cols-6 md:grid-cols-8 gap-8">
         {libraryData?.data.map((game: Game) => (
-          <div key={game.id} className="shadow-lg shadow-black/70">
+          <div
+            key={game.id}
+            className="shadow-lg shadow-black/70 group relative"
+          >
+            <p className="absolute w-max -top-[25px] left-1/2 transform -translate-x-1/2 left-0 bg-gray-900 text-white px-[6px] rounded-md invisible group-hover:visible">
+              {game.name}
+            </p>
             <Link
               key={game.id}
               href={`/library/${steamId}/game/${game.id}`}

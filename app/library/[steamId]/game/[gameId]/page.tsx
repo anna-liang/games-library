@@ -82,7 +82,13 @@ const GamePage = async (props: {
               </p>
               <div className="grid grid-cols-10 gap-4 pl-[3px]">
                 {gameData.achievements.map((achievement: Achievement) => (
-                  <div key={achievement.id}>
+                  <div
+                    key={achievement.id}
+                    className="group relative text-center"
+                  >
+                    <p className="absolute w-max -top-[25px] left-1/2 transform -translate-x-1/2 left-0 bg-gray-900 text-white px-[6px] rounded-md invisible group-hover:visible">
+                      {achievement.name}
+                    </p>
                     <Image
                       src={achievement.icon}
                       alt={achievement.id}
