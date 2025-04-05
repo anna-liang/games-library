@@ -23,7 +23,7 @@ const GamePage = async (props: {
 
   try {
     const { data } = await axios.get(
-      `http://localhost:3000/api/getUserStatsForGame`,
+      `${process.env.NEXT_PUBLIC_DEV_URL}/api/getUserStatsForGame`,
       {
         params: {
           steamId: steamId,

@@ -13,7 +13,7 @@ export default async function Page(props: {
 
   try {
     const response = await axios.get(
-      `http://localhost:3000/api/getOwnedGames`,
+      `${process.env.NEXT_PUBLIC_DEV_URL}/api/getOwnedGames`,
       {
         params: {
           steamId: steamId,
