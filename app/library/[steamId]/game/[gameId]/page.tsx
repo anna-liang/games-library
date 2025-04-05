@@ -21,9 +21,12 @@ const GamePage = async (props: {
     perfection: false,
   };
 
-  const BASE_URL = process.env.NEXT_PUBLIC_DEV_MODE
-    ? process.env.NEXT_PUBLIC_DEV_URL
-    : process.env.NEXT_PUBLIC_PROD_URL;
+  console.log(process.env.NEXT_PUBLIC_DEV_MODE);
+
+  const BASE_URL =
+    process.env.NEXT_PUBLIC_DEV_MODE === 'true'
+      ? process.env.NEXT_PUBLIC_DEV_URL
+      : process.env.NEXT_PUBLIC_PROD_URL;
 
   try {
     const { data } = await axios.get(`${BASE_URL}/api/getUserStatsForGame`, {

@@ -11,9 +11,10 @@ export default async function Page(props: {
   const steamId = params.steamId;
   let libraryData;
 
-  const BASE_URL = process.env.NEXT_PUBLIC_DEV_MODE
-    ? process.env.NEXT_PUBLIC_DEV_URL
-    : process.env.NEXT_PUBLIC_PROD_URL;
+  const BASE_URL =
+    process.env.NEXT_PUBLIC_DEV_MODE === 'true'
+      ? process.env.NEXT_PUBLIC_DEV_URL
+      : process.env.NEXT_PUBLIC_PROD_URL;
 
   try {
     const response = await axios.get(`${BASE_URL}/api/getOwnedGames`, {
