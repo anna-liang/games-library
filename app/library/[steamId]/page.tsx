@@ -11,16 +11,17 @@ export default async function Page(props: {
   const steamId = params.steamId;
   let libraryData;
 
+  const BASE_URL = process.env.NEXT_PUBLIC_DEV_MODE
+    ? process.env.NEXT_PUBLIC_DEV_URL
+    : process.env.NEXT_PUBLIC_PROD_URL;
+
   try {
-    const response = await axios.get(
-      `${process.env.NEXT_PUBLIC_DEV_URL}/api/getOwnedGames`,
-      {
-        params: {
-          steamId: steamId,
-          sortByPlaytime: true,
-        },
+    const response = await axios.get(`${BASE_URL}/api/getOwnedGames`, {
+      params: {
+        steamId: steamId,
+        sortByPlaytime: true,
       },
-    );
+    });
     libraryData = response;
   } catch (error) {
     console.error(error);

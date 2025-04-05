@@ -21,16 +21,17 @@ const GamePage = async (props: {
     perfection: false,
   };
 
+  const BASE_URL = process.env.NEXT_PUBLIC_DEV_MODE
+    ? process.env.NEXT_PUBLIC_DEV_URL
+    : process.env.NEXT_PUBLIC_PROD_URL;
+
   try {
-    const { data } = await axios.get(
-      `${process.env.NEXT_PUBLIC_DEV_URL}/api/getUserStatsForGame`,
-      {
-        params: {
-          steamId: steamId,
-          gameId: gameId,
-        },
+    const { data } = await axios.get(`${BASE_URL}/api/getUserStatsForGame`, {
+      params: {
+        steamId: steamId,
+        gameId: gameId,
       },
-    );
+    });
     gameData = data;
   } catch (error) {
     console.error(error);
