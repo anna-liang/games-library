@@ -11,9 +11,11 @@ export default function Home() {
   const [showHelp, setShowHelp] = useState(false);
   const router = useRouter();
 
-  const handleInput = async (e) => {
+  const handleInput = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    router.push(`/library/${e.target.steamId.value}`);
+    const form = e.target as HTMLFormElement;
+    const input = form.elements.namedItem('steamId') as HTMLInputElement;
+    router.push(`/library/${input.value}`);
   };
 
   const onClickHelpIcon = () => {
