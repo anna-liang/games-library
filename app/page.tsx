@@ -21,9 +21,11 @@ export default function Home() {
   };
 
   return (
-    <div className="grid h-screen flex justify-items-center content-center">
-      <div className="flex items-center pb-4">
-        <p className={`${tomorrow.className} text-white text-3xl pr-2`}>
+    <div className="grid h-screen flex justify-center content-center">
+      <div className="flex flex-row justify-center content-center pb-4 w-full">
+        <p
+          className={`${tomorrow.className} text-white text-2xl lg:text-3xl pr-2`}
+        >
           Enter your unique Steam id
         </p>
         <button onClick={onClickHelpIcon}>
@@ -54,18 +56,18 @@ export default function Home() {
           height={300}
         />
       </div>
-      <form onSubmit={handleInput}>
-        <div className="grid justify-items-center">
+      <form onSubmit={handleInput} className="w-full">
+        <div className="flex flex-col items-center mx-24">
           <input
             type="text"
             name="steamId"
-            className={`${tomorrow.className} text-6xl caret-white outline-none text-white bg-gray-500 rounded-lg w-<1/2> p-4 mb-4`}
+            className={`${tomorrow.className} h-24 text-6xl caret-white outline-none text-white bg-gray-500 rounded-lg block w-full p-4 mb-4`}
             autoFocus
             onBlur={({ target }) => target.focus()}
           />
           <button
             type="submit"
-            className={`${tomorrow.className} bg-blue-600 hover:bg-blue-800 text-4xl p-4 rounded-lg text-white`}
+            className={`${tomorrow.className} bg-blue-600 hover:bg-blue-800 text-xl md:text-2xl lg:text-4xl p-4 rounded-lg text-white w-1/2`}
           >
             LOAD MY LIBRARY
           </button>

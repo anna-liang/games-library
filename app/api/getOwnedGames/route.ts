@@ -25,6 +25,7 @@ export async function GET(request: NextRequest) {
           backgroundImage: '',
           playtime: game.playtime_forever,
           achievements: [],
+          perfection: false,
         };
       },
     );

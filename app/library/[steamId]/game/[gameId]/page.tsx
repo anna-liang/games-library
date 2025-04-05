@@ -43,18 +43,21 @@ const GamePage = async (props: {
         className="bg-contain bg-no-repeat"
       >
         <div className={`p-24`}>
-          <div className="grid grid-cols-3 gap-8">
-            <div className="grid justify-items-center">
-              <BoxArt game={gameData} style="shadow-lg shadow-black/70" />
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 md:w-[70vw]">
+            <div className="grid justify-items-center grid-cols-subgrid grid">
+              <BoxArt
+                game={gameData}
+                style="shadow-lg shadow-black/70 w-auto sm:w-full max-w-[300px]"
+              />
             </div>
             <div className="col-span-2">
               <div className="relative flex flex-row">
                 <p
-                  className={`${tomorrow.className} float-left text-6xl text-gray-300 mb-1 mr-2`}
+                  className={`${tomorrow.className} float-left text-3xl md:text-5xl lg:text-6xl text-gray-300 mb-1 mr-2`}
                 >
                   {gameData.name}
                 </p>
-                <div className="ml-8">
+                <div className="ml-10">
                   <Image
                     src={PerfectionRibbon}
                     alt="perfection ribbon"
@@ -80,13 +83,13 @@ const GamePage = async (props: {
               >
                 {gameData.description}
               </p>
-              <div className="grid grid-cols-10 gap-4 pl-[3px]">
+              <div className="grid grid-cols-6 sm:grid-cols-10 gap-1 xl:gap-2 pl-[3px] xl:max-w-[40vw] 2xl:max-w-[35vw]">
                 {gameData.achievements.map((achievement: Achievement) => (
                   <div
                     key={achievement.id}
                     className="group relative text-center"
                   >
-                    <p className="absolute w-max -top-[25px] left-1/2 transform -translate-x-1/2 left-0 bg-gray-900 text-white px-[6px] rounded-md invisible group-hover:visible">
+                    <p className="absolute w-max -top-[25px] left-1/2 2xl:left-1/3 transform -translate-x-1/2 2xl:-translate-x-[42%] left-0 bg-gray-900 text-white px-[6px] rounded-md invisible group-hover:visible">
                       {achievement.name}
                     </p>
                     <Image

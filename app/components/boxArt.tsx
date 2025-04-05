@@ -22,8 +22,9 @@ export default function BoxArt({
     <Image
       src={imageSrc}
       alt={`${game.name}'s icon`}
-      width={600}
-      height={900}
+      width={0}
+      height={0}
+      sizes="100vw"
       onError={handleImageError} // can't be passed to client component props
       className={style}
     />
