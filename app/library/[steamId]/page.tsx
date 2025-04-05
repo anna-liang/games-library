@@ -47,6 +47,8 @@ export default async function Page(props: {
               } -top-[25px] left-1/2 transform -translate-x-1/2 left-0 bg-gray-900 text-white px-[6px] rounded-md invisible group-hover:visible text-center z-10`}
             >
               {game.name}
+              <br />
+              {(game.playtime / 60).toFixed(1)} hours
             </p>
             <Link
               key={game.id}
