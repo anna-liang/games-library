@@ -8,6 +8,8 @@ import FindSteamIdImage from '../public/find-steam-id.jpg';
 import Image from 'next/image';
 
 export default function Home() {
+  const demoId = '76561198042567762';
+  const [inputId, setInputId] = useState('');
   const [showHelp, setShowHelp] = useState(false);
   const router = useRouter();
 
@@ -20,6 +22,11 @@ export default function Home() {
 
   const onClickHelpIcon = () => {
     setShowHelp((prev) => !prev);
+  };
+
+  const onTryMine = () => {
+    // populate form with demoId
+    setInputId(demoId);
   };
 
   return (
@@ -63,16 +70,28 @@ export default function Home() {
           <input
             type="text"
             name="steamId"
+            defaultValue={inputId}
             className={`${tomorrow.className} h-24 text-6xl caret-white outline-none text-white bg-gray-500 rounded-lg block w-full p-4 mb-4`}
             autoFocus
             onBlur={({ target }) => target.focus()}
           />
           <button
             type="submit"
-            className={`${tomorrow.className} bg-blue-600 hover:bg-blue-800 text-xl md:text-2xl lg:text-4xl p-4 rounded-lg text-white w-1/2`}
+            className={`${tomorrow.className} bg-blue-600 hover:bg-blue-800 text-xl md:text-2xl lg:text-4xl p-4 rounded-lg text-white w-1/2 mb-2`}
           >
             LOAD MY LIBRARY
           </button>
+
+          <p className={`${tomorrow.className} text-white`}>
+            Don&apos;t have a Steam Id?{' '}
+            <button
+              onClick={onTryMine}
+              type="button"
+              className={`${tomorrow.className} text-blue-400 underline ml-1`}
+            >
+              Try mine!
+            </button>
+          </p>
         </div>
       </form>
     </div>
