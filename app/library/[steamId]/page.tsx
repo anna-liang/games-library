@@ -1,8 +1,7 @@
 import axios from 'axios';
 import { Game } from '../../lib/types';
-import Link from 'next/link';
+import GameCard from '../../components/gameCard';
 import { tomorrow } from '../../lib/fonts';
-import BoxArt from '../../components/boxArt';
 
 export default async function Page(props: {
   params: Promise<{ steamId: string }>;
@@ -37,27 +36,7 @@ export default async function Page(props: {
       </h1>
       <div className="flex grid grid-cols-3 sm:grid-cols-6 md:grid-cols-8 lg:grid-cols-10 xl:grid-cols-12 gap-2 md:gap-4">
         {libraryData?.data.map((game: Game) => (
-          <div
-            key={game.id}
-            className="shadow-lg shadow-black/70 group relative"
-          >
-            <p
-              className={`absolute ${
-                game.name.length > 25 ? ' w-[175px]' : 'w-max'
-              } -top-[25px] left-1/2 transform -translate-x-1/2 left-0 bg-gray-900 text-white px-[6px] rounded-md invisible group-hover:visible text-center z-10`}
-            >
-              {game.name}
-              <br />
-              {(game.playtime / 60).toFixed(1)} hours
-            </p>
-            <Link
-              key={game.id}
-              href={`/library/${steamId}/game/${game.id}`}
-              className="grid justify-items-center"
-            >
-              <BoxArt game={game} key={game.id} style="w-full" />
-            </Link>
-          </div>
+          <GameCard game={game} steamId={steamId} key={game.id} />
         ))}
       </div>
     </div>
